@@ -40,5 +40,3 @@ Sun Valley - 1800.00
 East Hollywood - 1900.00
 Koreatown - 700.00
 ```
-
-            "room_name": "Kitchen",

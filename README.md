@@ -29,3 +29,16 @@ Payload exemplo:
     ]
 }
 ```
+
+Bairros listados e seus valores:
+
+```
+Bel Air - 1000.00
+Beverly Hills - 2000.00
+Silver Lake - 1500.00
+Sun Valley - 1800.00
+East Hollywood - 1900.00
+Koreatown - 700.00
+```
+
+            "room_name": "Kitchen",

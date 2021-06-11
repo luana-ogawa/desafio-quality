@@ -4,6 +4,7 @@ import br.com.mercadolivre.desafio_quality.dtos.RoomSizeDTO;
 import br.com.mercadolivre.desafio_quality.entities.Prop;
 import br.com.mercadolivre.desafio_quality.entities.Room;
 import br.com.mercadolivre.desafio_quality.exceptions.ApiExceptionControllerAdvice;
+import br.com.mercadolivre.desafio_quality.service.exceptions.DataIntegrityException;
 import br.com.mercadolivre.desafio_quality.utils.ArithmeticUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -35,7 +36,7 @@ public class HouseValuationService {
     public String propDistrict(Prop prop) throws Exception {
         String propDistrict = prop.getProp_district();
         if(propDistrict == null || !districtPrices.containsKey(prop.getProp_district())) {
-            throw new Exception("Bairro inválido"); //arrumar
+            throw new DataIntegrityException("Bairro inválido");
         }
         return propDistrict;
     }
@@ -47,9 +48,8 @@ public class HouseValuationService {
 
     public Room calculateGreatestRoom(Prop prop) throws Exception {
         return prop.getRooms().stream()
-                .max(Comparator.naturalOrder())
-//                .max(Comparator.comparing(Room::calculateRoomSize))
-                .orElseThrow(() -> new Exception("No room returned"));
+                .max(Comparator.comparing(Room::calculateRoomSize))
+                .orElseThrow(() -> new DataIntegrityException("Não retornou cômodo"));
     }
 
     public List<RoomSizeDTO> returnRoomsSize(Prop prop) {

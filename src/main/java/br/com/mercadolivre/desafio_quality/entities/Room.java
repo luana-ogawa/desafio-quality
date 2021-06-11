@@ -13,7 +13,7 @@ public class Room implements Comparable<Room>{
 
     @NotBlank(message = "O campo não pode estar vazio.")
     @Size(max = 30, message = "O comprimento do cômodo não pode exceder 30 caracteres.")
-    @Pattern(regexp = "^[A-z ]+$", message = "O nome do cômodo deve começar com uma letra maiúscula.") //corrigir
+    @Pattern(regexp = "^[A-Z].*$", message = "O nome do cômodo deve começar com uma letra maiúscula.")
     private String room_name;
 
     @NotNull(message = "A largura do cômodo não pode estar vazia.")

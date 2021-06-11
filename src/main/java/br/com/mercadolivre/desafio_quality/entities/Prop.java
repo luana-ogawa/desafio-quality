@@ -18,7 +18,7 @@ public class Prop {
 
     @NotBlank(message = "O nome da propriedade não pode estar vazio.")
     @Size(max = 30, message = "O comprimento do nome não pode exceder 30 caracteres.")
-    @Pattern(regexp = "^[A-z ]+$", message = "O nome da propriedade deve começar com uma letra maiúscula.") //corrigir
+    @Pattern(regexp = "^[A-Z].*$", message = "O nome da propriedade deve começar com uma letra maiúscula.")
     private String prop_name;
 
     @NotBlank(message = "O bairro não pode estar vazio.")

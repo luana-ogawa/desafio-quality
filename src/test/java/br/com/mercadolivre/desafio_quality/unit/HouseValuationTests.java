@@ -4,6 +4,7 @@ import br.com.mercadolivre.desafio_quality.entities.Prop;
 import br.com.mercadolivre.desafio_quality.entities.Room;
 import br.com.mercadolivre.desafio_quality.service.HouseValuationService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,22 +18,28 @@ public class HouseValuationTests {
     @Autowired
     HouseValuationService service;
 
-    @Test
-    public void testCalculatePropArea() {
-        //arrange
-        Room room1 = new Room("Bedroom", 10.0, 5.0);
-        Room room2 = new Room("Bathroom", 2.0, 2.0);
-        Room room3 = new Room("Kitchen", 5.0, 5.0);
-        List<Room> roomList = new ArrayList<>();
+    static Room room1, room2, room3;
+    static List<Room> roomList;
+    static Prop prop;
+
+    @BeforeAll
+    public static void setup() {
+        room1 = new Room("Bedroom", 10.0, 5.0);
+        room2 = new Room("Bathroom", 2.0, 2.0);
+        room3 = new Room("Kitchen", 5.0, 5.0);
+        roomList = new ArrayList<>();
         roomList.add(room1);
         roomList.add(room2);
         roomList.add(room3);
 
-        Prop prop = new Prop();
+        prop = new Prop();
         prop.setProp_name("Casa A");
         prop.setProp_district("Beverly Hills");
         prop.setRooms(roomList);
+    }
 
+    @Test
+    public void testCalculatePropArea() {
         //act
         Double calculatedArea = service.calculatePropArea(prop);
 
@@ -42,20 +49,6 @@ public class HouseValuationTests {
 
     @Test
     public void testVerifyPropDistrict() {
-        //arrange
-        Room room1 = new Room("Bedroom", 10.0, 5.0);
-        Room room2 = new Room("Bathroom", 2.0, 2.0);
-        Room room3 = new Room("Kitchen", 5.0, 5.0);
-        List<Room> roomList = new ArrayList<>();
-        roomList.add(room1);
-        roomList.add(room2);
-        roomList.add(room3);
-
-        Prop prop = new Prop();
-        prop.setProp_name("Casa A");
-        prop.setProp_district("Beverly Hills");
-        prop.setRooms(roomList);
-
         //act
         String propDistrict = null;
         try {
@@ -71,20 +64,6 @@ public class HouseValuationTests {
 
     @Test
     public void testCalculateGreatestRoom(){
-        //arrange
-        Room room1 = new Room("Bedroom", 10.0, 5.0);
-        Room room2 = new Room("Bathroom", 2.0, 2.0);
-        Room room3 = new Room("Kitchen", 5.0, 5.0);
-        List<Room> roomList = new ArrayList<>();
-        roomList.add(room1);
-        roomList.add(room2);
-        roomList.add(room3);
-
-        Prop prop = new Prop();
-        prop.setProp_name("Casa A");
-        prop.setProp_district("Beverly Hills");
-        prop.setRooms(roomList);
-
         //act
         Room greatestRoom = null;
         try {
@@ -99,20 +78,6 @@ public class HouseValuationTests {
 
     @Test
     public void testCalculateRoomSize() {
-        //arrange
-        Room room1 = new Room("Bedroom", 10.0, 5.0);
-        Room room2 = new Room("Bathroom", 2.0, 2.0);
-        Room room3 = new Room("Kitchen", 5.0, 5.0);
-        List<Room> roomList = new ArrayList<>();
-        roomList.add(room1);
-        roomList.add(room2);
-        roomList.add(room3);
-
-        Prop prop = new Prop();
-        prop.setProp_name("Casa A");
-        prop.setProp_district("Beverly Hills");
-        prop.setRooms(roomList);
-
         //act
         Double roomSize = room1.calculateRoomSize();
 

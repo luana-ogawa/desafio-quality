@@ -40,6 +40,27 @@ public class HouseValuationTests {
         Assertions.assertEquals(79.0, calculatedArea);
     }
 
+    @Test
+    public void testCalculateGreatestRoom() throws Exception {
+        //arrange
+        Room room1 = new Room("Bedroom", 10.0, 5.0);
+        Room room2 = new Room("Bathroom", 2.0, 2.0);
+        Room room3 = new Room("Kitchen", 5.0, 5.0);
+        List<Room> roomList = new ArrayList<>();
+        roomList.add(room1);
+        roomList.add(room2);
+        roomList.add(room3);
 
+        Prop prop = new Prop();
+        prop.setProp_name("Casa A");
+        prop.setProp_district("Beverly Hills");
+        prop.setRooms(roomList);
+
+        //act
+        Room greatestRoom = service.calculateGreatestRoom(prop);
+
+        //assert
+        Assertions.assertEquals(room1, greatestRoom);
+    }
 
 }

@@ -41,7 +41,7 @@ public class HouseValuationTests {
     }
 
     @Test
-    public void testCalculateGreatestRoom() throws Exception {
+    public void testVerifyPropDistrict() {
         //arrange
         Room room1 = new Room("Bedroom", 10.0, 5.0);
         Room room2 = new Room("Bathroom", 2.0, 2.0);
@@ -57,7 +57,41 @@ public class HouseValuationTests {
         prop.setRooms(roomList);
 
         //act
-        Room greatestRoom = service.calculateGreatestRoom(prop);
+        String propDistrict = null;
+        try {
+            propDistrict = service.propDistrict(prop);
+        } catch(Exception e) {
+            e.printStackTrace();
+            Assertions.fail("Nao deveria lancar excecao");
+        }
+
+        //assert
+        Assertions.assertEquals("Beverly Hills", propDistrict);
+    }
+
+    @Test
+    public void testCalculateGreatestRoom(){
+        //arrange
+        Room room1 = new Room("Bedroom", 10.0, 5.0);
+        Room room2 = new Room("Bathroom", 2.0, 2.0);
+        Room room3 = new Room("Kitchen", 5.0, 5.0);
+        List<Room> roomList = new ArrayList<>();
+        roomList.add(room1);
+        roomList.add(room2);
+        roomList.add(room3);
+
+        Prop prop = new Prop();
+        prop.setProp_name("Casa A");
+        prop.setProp_district("Beverly Hills");
+        prop.setRooms(roomList);
+
+        //act
+        Room greatestRoom = null;
+        try {
+            greatestRoom = service.calculateGreatestRoom(prop);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //assert
         Assertions.assertEquals(room1, greatestRoom);

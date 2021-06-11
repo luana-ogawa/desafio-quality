@@ -32,11 +32,16 @@ public class HouseValuationService {
                 .reduce(0.0, ArithmeticUtils :: add);
     }
 
-    public Double calculatePropValue(Prop prop) throws Exception {
-        Double value = districtPrices.get(prop.getProp_district());
-        if(value == null) {
-            throw new Exception("bla"); //arrumar
+    public String propDistrict(Prop prop) throws Exception {
+        String propDistrict = prop.getProp_district();
+        if(propDistrict == null || !districtPrices.containsKey(prop.getProp_district())) {
+            throw new Exception("Bairro inválido"); //arrumar
         }
+        return propDistrict;
+    }
+
+    public Double calculatePropValue(Prop prop) throws Exception {
+        Double value = districtPrices.get(propDistrict(prop));
         return calculatePropArea(prop) * districtPrices.get(prop.getProp_district());
     }
 

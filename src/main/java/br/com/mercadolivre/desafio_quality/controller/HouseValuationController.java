@@ -6,10 +6,7 @@ import br.com.mercadolivre.desafio_quality.service.HouseValuationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,7 +16,7 @@ public class HouseValuationController {
     @Autowired
     HouseValuationService service;
 
-    @RequestMapping(value = "/house-valuation", method = RequestMethod.POST)
+    @PostMapping ("/house-valuation")
     public ResponseEntity<ResponseDTO> houseValuation (@Valid @RequestBody Prop prop) throws Exception {
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setTotalArea(service.calculatePropArea(prop));

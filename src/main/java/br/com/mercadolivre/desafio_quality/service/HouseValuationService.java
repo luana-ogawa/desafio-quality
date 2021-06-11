@@ -3,8 +3,10 @@ package br.com.mercadolivre.desafio_quality.service;
 import br.com.mercadolivre.desafio_quality.dtos.RoomSizeDTO;
 import br.com.mercadolivre.desafio_quality.entities.Prop;
 import br.com.mercadolivre.desafio_quality.entities.Room;
+import br.com.mercadolivre.desafio_quality.exceptions.ApiExceptionControllerAdvice;
 import br.com.mercadolivre.desafio_quality.utils.ArithmeticUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,13 +32,18 @@ public class HouseValuationService {
                 .reduce(0.0, ArithmeticUtils :: add);
     }
 
-    public Double calculatePropValue(Prop prop) {
+    public Double calculatePropValue(Prop prop) throws Exception {
+        Double value = districtPrices.get(prop.getProp_district());
+        if(value == null) {
+            throw new Exception("bla"); //arrumar
+        }
         return calculatePropArea(prop) * districtPrices.get(prop.getProp_district());
     }
 
     public Room calculateGreatestRoom(Prop prop) throws Exception {
         return prop.getRooms().stream()
                 .max(Comparator.naturalOrder())
+//                .max(Comparator.comparing(Room::calculateRoomSize))
                 .orElseThrow(() -> new Exception("No room returned"));
     }
 

@@ -1,46 +1,31 @@
 package br.com.mercadolivre.desafio_quality.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Room implements Comparable<Room>{
 
+    @NotBlank(message = "O campo não pode estar vazio.")
+    @Size(max = 30, message = "O comprimento do cômodo não pode exceder 30 caracteres.")
+    @Pattern(regexp = "^[A-z ]+$", message = "O nome do cômodo deve começar com uma letra maiúscula.") //corrigir
     private String room_name;
+
+    @NotNull(message = "A largura do cômodo não pode estar vazia.")
+    @Max(value = 25, message = "A largura máxima permitida por cômodo é de 25 metros")
     private Double room_width;
+
+    @NotNull(message = "O comprimento do cômodo não pode estar vazio.")
+    @Max(value = 33, message = "O comprimento máximo permitido por cômodo é de 33 metros.")
     private Double room_length;
-
-    public Room() {
-    }
-
-    public Room(String room_name, Double room_width, Double room_length) {
-        this.room_name = room_name;
-        this.room_width = room_width;
-        this.room_length = room_length;
-    }
 
     public Double calculateRoomSize() {
         return this.room_length * this.room_width;
-    }
-
-    public String getRoom_name() {
-        return room_name;
-    }
-
-    public void setRoom_name(String room_name) {
-        this.room_name = room_name;
-    }
-
-    public Double getRoom_width() {
-        return room_width;
-    }
-
-    public void setRoom_width(Double room_width) {
-        this.room_width = room_width;
-    }
-
-    public Double getRoom_length() {
-        return room_length;
-    }
-
-    public void setRoom_length(Double room_length) {
-        this.room_length = room_length;
     }
 
     @Override

@@ -3,6 +3,7 @@ package br.com.mercadolivre.desafio_quality.unit;
 import br.com.mercadolivre.desafio_quality.entities.Prop;
 import br.com.mercadolivre.desafio_quality.entities.Room;
 import br.com.mercadolivre.desafio_quality.service.HouseValuationService;
+import br.com.mercadolivre.desafio_quality.service.exceptions.DataIntegrityException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -63,6 +64,19 @@ public class HouseValuationTests {
     }
 
     @Test
+    public void testVerifyPropDistrictShouldThrowException() throws DataIntegrityException{
+        prop.setProp_district("Beverly Hi");
+
+        String propDistrict = null;
+        try {
+            propDistrict = service.propDistrict(prop);
+            Assertions.fail();
+        } catch(Exception e) {
+            Assertions.assertEquals("Bairro inválido", e.getMessage());
+        }
+    }
+
+    @Test
     public void testCalculateGreatestRoom(){
         //act
         Room greatestRoom = null;
@@ -79,10 +93,14 @@ public class HouseValuationTests {
     @Test
     public void testCalculateRoomSize() {
         //act
-        Double roomSize = room1.calculateRoomSize();
+        Double roomSize1 = room1.calculateRoomSize();
+        Double roomSize2 = room2.calculateRoomSize();
+        Double roomSize3 = room3.calculateRoomSize();
 
         //assert
-        Assertions.assertEquals(50.0, roomSize);
+        Assertions.assertEquals(50.0, roomSize1);
+        Assertions.assertEquals(4.0, roomSize2);
+        Assertions.assertEquals(25.0, roomSize3);
     }
 
 }

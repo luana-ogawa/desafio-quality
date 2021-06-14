@@ -1,7 +1,8 @@
 # desafio-quality
 ## Bootcamp Desafio Testing
 
-Utilizar o endpoint: /house-valuation
+Endpoint: /house-valuation
+Method: POST
 
 Payload exemplo:
 

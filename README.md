@@ -26,7 +26,34 @@
             "room_width": 15.0,
             "room_length": 10.0
         }
+    ]
+}
+```
+    
+**Saída esperada:**
 
+```
+{
+    "totalArea": 275.0,
+    "totalValue": 275000.0,
+    "greatestRoom": {
+        "room_name": "Kitchen",
+        "room_width": 15.0,
+        "room_length": 10.0
+    },
+    "roomSizes": [
+        {
+            "room_name": "Room 1",
+            "room_size": 100.0
+        },
+        {
+            "room_name": "Bathroom",
+            "room_size": 25.0
+        },
+        {
+            "room_name": "Kitchen",
+            "room_size": 150.0
+        }
     ]
 }
 ```

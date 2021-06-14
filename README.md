@@ -1,10 +1,10 @@
 # desafio-quality
 ## Bootcamp Desafio Testing
 
-Endpoint: /house-valuation
-Method: POST
+> **Endpoint:** /house-valuation <p>
+> **Method:** POST
 
-Payload exemplo:
+**Payload exemplo:**
 
 ```
 {
@@ -31,7 +31,7 @@ Payload exemplo:
 }
 ```
 
-Bairros listados e seus valores:
+**Bairros listados e seus valores:**
 
 ```
 Bel Air - 1000.00

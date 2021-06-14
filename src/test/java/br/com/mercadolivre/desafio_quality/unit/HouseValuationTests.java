@@ -7,17 +7,13 @@ import br.com.mercadolivre.desafio_quality.service.exceptions.DataIntegrityExcep
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
 public class HouseValuationTests {
 
-    @Autowired
-    HouseValuationService service;
+    HouseValuationService service = new HouseValuationService();
 
     static Room room1, room2, room3;
     static List<Room> roomList;
